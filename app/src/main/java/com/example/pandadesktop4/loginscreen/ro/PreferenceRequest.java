@@ -13,12 +13,12 @@ public class PreferenceRequest {
     private String date;
 
     @Expose
-    @SerializedName("lunch")
-    private boolean lunch;
+    @SerializedName("pref")
+    private boolean pref;
 
-    public PreferenceRequest(String date, boolean lunch) {
+    public PreferenceRequest(String date, boolean pref) {
         this.date = date;
-        this.lunch = lunch;
+        this.pref = pref;
     }
 
     public String getDate() {
@@ -30,11 +30,11 @@ public class PreferenceRequest {
     }
 
     public boolean getLunch() {
-        return lunch;
+        return pref;
     }
 
-    public void setLunch(boolean lunch) {
-        this.lunch = lunch;
+    public void setLunch(boolean pref) {
+        this.pref = pref;
     }
 
 

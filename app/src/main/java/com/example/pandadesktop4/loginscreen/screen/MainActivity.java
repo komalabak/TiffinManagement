@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         // b2=(Button)findViewById(R.id.button2);
         usernametext = (TextView) findViewById(R.id.textView6);
         usernametext.setVisibility(View.GONE);
-        username.setText("abc");
-        password.setText("123");
+        username.setText("komal");
+        password.setText("1234");
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void success(ServerResponse serverResponse, Response response) {
-                        Toast.makeText(getApplicationContext(), "Redirecting....", Toast.LENGTH_SHORT).show();
+
+                        RestClient.authToken = serverResponse.getAuthToken();
                         Intent i = new Intent(getApplicationContext(), MakeEntry.class);
                         startActivity(i);
 

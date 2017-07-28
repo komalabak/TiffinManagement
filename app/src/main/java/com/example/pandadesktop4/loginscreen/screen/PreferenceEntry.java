@@ -42,10 +42,10 @@ public class PreferenceEntry extends AppCompatActivity {
     private void initializePreferences(Integer month, Integer year) {
         this.current_month = month;
         this.current_year = year;
-//        this.currentMonthPreferences = new ArrayList<>();
+        this.currentMonthPreferences = new ArrayList<>();
 
         List<Date> dates = Util.getDatesForMonth(month, year);
-        for (Date date : dates) {
+        for(Date date : dates) {
             currentMonthPreferences.add(new Preference(date, false));
         }
     }
@@ -69,19 +69,19 @@ public class PreferenceEntry extends AppCompatActivity {
     private void reload(Integer month, Integer year) {
         initializePreferences(month, year); // TODO get month and year from intent
 
-        currentMonthLabel.setText(new SimpleDateFormat("MMMMMMM").format(Util.getDate(month, year)));
+        currentMonthLabel.setText(new SimpleDateFormat("MMMMMMMM").format(Util.getDate(month, year)));
         PreferenceAPI api = RestClient.getAuthenticationRestAdapter().create(PreferenceAPI.class);
         call();
-
         api.getAllPreferences(new Callback<PreferenceListResponse>() {
             @Override
             public void success(PreferenceListResponse preferenceListResponse, Response response) {
 
                 for (PreferenceResponse preferenceResponse : preferenceListResponse.getPreferences()) {
-                    for (Preference preference : currentMonthPreferences) {
+                   for (Preference preference : currentMonthPreferences) {
+
                         if (preferenceResponse.getDate().equals(preference.date)) {
                             preference.lunch = preferenceResponse.getLunch();
-                        }
+                       }
                     }
                 }
                 call();
@@ -117,24 +117,47 @@ public class PreferenceEntry extends AppCompatActivity {
     }
 
 
+
+
+
     public void call() {
         this.adapter = new CustomAdapter(currentMonthPreferences, getApplicationContext());
         currentMonthPreferencesView.setAdapter((ListAdapter) adapter);
-        currentMonthPreferencesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView parent, View view, int position, long id) {
-                Preference preference = currentMonthPreferences.get(position);
-                preference.lunch = !preference.lunch;
-                adapter.notifyDataSetChanged();
-            }
-        });
+//        currentMonthPreferencesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView parent, View view, int position, long id) {
+//                Preference preference = currentMonthPreferences.get(position);
+//                preference.lunch = !preference.lunch;
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
     }
 
 
 }
 
 
-
+//goToNextMonth.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View view) {
+//        if (current_month > 12) {
+//        reload(0, current_year + 1);
+//        } else {
+//        reload(current_month + 1, current_year);
+//        }
+//        }
+//        });
+//
+//        gotToPreviousMonth.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View view) {
+//        if (current_month < 0) {
+//        reload(11, current_year - 1);
+//        } else {
+//        reload(current_month - 1, current_year);
+//        }
+//        }
+//        });
 
 
 

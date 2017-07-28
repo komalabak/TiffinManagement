@@ -14,11 +14,11 @@ public class PreferenceResponse {
 
     @Expose
     @SerializedName("lunch")
-    private boolean lunch;
+    private boolean pref;
 
     public PreferenceResponse(String date, boolean lunch) {
         this.date = date;
-        this.lunch = lunch;
+        this.pref = lunch;
     }
 
     public String getDate() {
@@ -30,11 +30,11 @@ public class PreferenceResponse {
     }
 
     public boolean getLunch() {
-        return lunch;
+        return pref;
     }
 
     public void setLunch(boolean lunch) {
-        this.lunch = lunch;
+        this.pref = lunch;
     }
 
 

@@ -15,11 +15,8 @@ import android.widget.Toast;
 import com.example.pandadesktop4.loginscreen.R;
 import com.example.pandadesktop4.loginscreen.repo.PreferenceAPI;
 import com.example.pandadesktop4.loginscreen.repo.RestClient;
-import com.example.pandadesktop4.loginscreen.ro.EmptyResponse;
-import com.example.pandadesktop4.loginscreen.ro.LoginResponse;
 import com.example.pandadesktop4.loginscreen.ro.PreferenceRequest;
 import com.example.pandadesktop4.loginscreen.vo.Preference;
-import com.google.android.gms.common.api.Result;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -63,36 +60,42 @@ public class CustomAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
-        ViewHolder viewHolder;
         final View result;
 
+
         if (convertView == null) {
-            viewHolder = new ViewHolder();
+            Preference item = getItem(position);
+
+            //Log.i(TAG, "index=");
+            Log.v("Tag","HHHHHHHHHHHHH");
+
+
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item, parent, false);
-            viewHolder.txtname = (TextView) convertView.findViewById(txtname);
-            viewHolder.checkBox = (CheckBox) convertView.findViewById(checkBox);
             final TextView textNameListView = (TextView) convertView.findViewById(txtname);
             final CheckBox checkBoxListView = (CheckBox) convertView.findViewById(checkBox);
+            textNameListView.setText(new SimpleDateFormat("MM/dd/yyyy").format(item.date));
+            checkBoxListView.setChecked(item.lunch);
 
-
-            viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            checkBoxListView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
 
                     PreferenceAPI preferenceAPI = RestClient.getAuthenticationRestAdapter().create(PreferenceAPI.class);
 
-                    preferenceAPI.saveTiffinPreference(new PreferenceRequest(textNameListView.getText().toString(), checkBoxListView.isChecked()), new Callback<EmptyResponse>() {
+                    preferenceAPI.saveTiffinPreference(new PreferenceRequest(textNameListView.getText().toString(), checkBoxListView.isChecked()), new Callback<Response>() {
 
                         @Override
-                        public void success(EmptyResponse loginResponse, Response response) {
+                        public void success(Response loginResponse, Response response) {
                             Toast.makeText(getContext(), "Sending....", Toast.LENGTH_SHORT).show();
+                            checkBoxListView.setChecked(true);
                         }
 
                         @Override
                         public void failure(RetrofitError error) {
                             Log.e("error", error.toString());
-                           // Toast.makeText(getContext(), "Something is wrong.", Toast.LENGTH_SHORT).show();
+                            checkBoxListView.setChecked(false);
+                             Toast.makeText(getContext(), "Something is wrong.", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -100,18 +103,9 @@ public class CustomAdapter extends ArrayAdapter {
                 }
             });
             result = convertView;
-            convertView.setTag(viewHolder);
-
         } else {
-            viewHolder = (ViewHolder) convertView.getTag();
             result = convertView;
         }
-
-        Preference item = getItem(position);
-
-
-        viewHolder.txtname.setText(new SimpleDateFormat("dd MMM yyyy,  EEE").format(item.date));
-        viewHolder.checkBox.setChecked(item.lunch);
 
 
         return result;

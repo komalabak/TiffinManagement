@@ -13,7 +13,7 @@ public class RestClient {
 
     public static RestAdapter getRestAdapter() {
         RestAdapter adapter = new RestAdapter.Builder()
-                .setEndpoint("http://192.168.1.185:3000")
+                .setEndpoint("http://192.168.1.182:9000")
                 .build();
         return adapter;
     }
@@ -27,7 +27,7 @@ public class RestClient {
         };
 
         RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint("http://192.168.1.185:3000")
+                .setEndpoint("http://192.168.1.182:9000")
                 .setRequestInterceptor(requestInterceptor)
                 .build();
         return restAdapter;

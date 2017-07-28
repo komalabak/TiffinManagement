@@ -6,6 +6,7 @@ import com.example.pandadesktop4.loginscreen.ro.PreferenceRequest;
 import com.google.android.gms.common.api.Result;
 
 import retrofit.Callback;
+import retrofit.client.Response;
 import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
@@ -21,6 +22,6 @@ public interface PreferenceAPI {
 
 
     @POST("/preference")
-    public void saveTiffinPreference(@Body PreferenceRequest preferenceRequest, Callback<EmptyResponse> response);
+    public void saveTiffinPreference(@Body PreferenceRequest preferenceRequest, Callback<Response> response);
 
 }
