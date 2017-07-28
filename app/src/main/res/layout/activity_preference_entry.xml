@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.pandadesktop4.loginscreen.MainActivity">
+    tools:context="com.example.pandadesktop4.loginscreen.screen.MainActivity">
 
     <ListView
         android:id="@+id/listView"
@@ -21,6 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jaunary"
+        android:textSize="20dp"
+        android:textStyle="bold"
         android:id="@+id/monthtext"
         android:layout_marginLeft="49dp"
         android:layout_marginStart="49dp"
@@ -32,6 +34,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:text="prev"
+        android:textSize="6dp"
         android:id="@+id/previousbutton"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
@@ -43,6 +46,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:text="next"
+        android:textSize="6dp"
         android:id="@+id/nextbutton"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"

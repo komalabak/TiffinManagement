@@ -1,4 +1,4 @@
-package com.example.pandadesktop4.loginscreen;
+package com.example.pandadesktop4.loginscreen.ro;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

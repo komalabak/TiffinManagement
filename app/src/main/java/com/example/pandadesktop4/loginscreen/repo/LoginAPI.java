@@ -1,9 +1,10 @@
-package com.example.pandadesktop4.loginscreen;
+package com.example.pandadesktop4.loginscreen.repo;
+
+import com.example.pandadesktop4.loginscreen.ro.LoginRequest;
+import com.example.pandadesktop4.loginscreen.ro.LoginResponse;
 
 import retrofit.Callback;
-import retrofit.client.Response;
 import retrofit.http.Body;
-import retrofit.http.GET;
 import retrofit.http.POST;
 
 /**
