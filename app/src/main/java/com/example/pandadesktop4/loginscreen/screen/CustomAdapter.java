@@ -19,9 +19,6 @@ import com.example.pandadesktop4.loginscreen.ro.PreferenceRequest;
 import com.example.pandadesktop4.loginscreen.vo.Preference;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import retrofit.Callback;
@@ -56,7 +53,7 @@ public class CustomAdapter extends ArrayAdapter<Preference> {
 
     @Override
     public Preference getItem(int position) {
-        this.preference=(Preference) dataSet.get(position);
+        this.preference = (Preference) dataSet.get(position);
         return (Preference) dataSet.get(position);
     }
 
@@ -67,11 +64,7 @@ public class CustomAdapter extends ArrayAdapter<Preference> {
         final View result;
         if (convertView == null) {
 
-//            Log.i("Position", position+"");
-//            Log.i("Position item", item.toString());
-
-            //Log.i(TAG, "index=");
-            Log.v("Tag","HHHHHHHHHHHHH");
+            Log.v("Tag", "HHHHHHHHHHHHH");
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_item, parent, false);
             fillRow(convertView, item);
             result = convertView;

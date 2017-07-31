@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by pandadesktop4 on 27/7/17.
  */
-
+//define variables that are in JSON
 public class PreferenceRequest {
     @Expose
     @SerializedName("date")

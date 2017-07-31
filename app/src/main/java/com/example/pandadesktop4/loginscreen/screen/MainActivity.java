@@ -27,12 +27,10 @@ public class MainActivity extends AppCompatActivity {
     TextView usernametext;
     int counter = 3;
 
-    // Intent i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        JodaTimeAndroid.init(this);
 
 
         loginButton = (Button) findViewById(R.id.button);
@@ -40,11 +38,9 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.editText2);
 
 
-        // b2=(Button)findViewById(R.id.button2);
         usernametext = (TextView) findViewById(R.id.textView6);
         usernametext.setVisibility(View.GONE);
-        username.setText("komal");
-        password.setText("1234");
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,38 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-//        loginButton.setOnClickListener(new View.OnClickListener()
-//        {
-//            public void onClick(View v){
-//                if (username.getText().toString().trim().length() <=0  )
-//                {
-//                    Toast.makeText(getApplicationContext(),"Enter Username",Toast.LENGTH_SHORT).show();
-//                }
-//                else if (password.getText().toString().trim().length() <=0)
-//                {
-//                    Toast.makeText(getApplicationContext(),"Enter Password",Toast.LENGTH_SHORT).show();
-//                }
-//                 if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
-//                    Toast.makeText(getApplicationContext(),"Redirecting....",Toast.LENGTH_SHORT).show();
-//                    Intent  i = new Intent(getApplicationContext(), MakeEntry.class);
-//                    startActivity(i);
-//                }
-//                 else{
-//
-//
-//                    Toast.makeText(getApplicationContext(),"Wrong Credentials",Toast.LENGTH_SHORT).show();
-//                    usernametext.setVisibility(View.VISIBLE);
-//                    usernametext.setBackgroundColor(Color.RED);
-//                    counter--;
-//                    usernametext.setText(Integer.toString(counter));
-//
-//                    if(counter == 0){
-//                        loginButton.setEnabled(false);
-//                    }
-//                }
-//            }
-//        });
 
 
     }
