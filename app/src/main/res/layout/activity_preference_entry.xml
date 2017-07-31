@@ -33,26 +33,22 @@
     <Button
         android:layout_width="40dp"
         android:layout_height="40dp"
-
         android:textSize="6dp"
+        android:background="@drawable/previous"
         android:id="@+id/previousbutton"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/listView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="next"
+        android:background="@drawable/nextbutton"
         android:textSize="6dp"
         android:id="@+id/nextbutton"
-        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/monthtext"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="12dp"
-        android:layout_marginEnd="12dp" />
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>
