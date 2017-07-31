@@ -33,7 +33,7 @@
     <Button
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="prev"
+
         android:textSize="6dp"
         android:id="@+id/previousbutton"
         android:layout_marginLeft="12dp"

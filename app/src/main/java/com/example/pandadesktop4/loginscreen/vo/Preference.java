@@ -20,4 +20,12 @@ public class Preference {
         this.date = new Date(preferenceResponse.getDate());
         this.lunch = preferenceResponse.getLunch();
     }
+
+    @Override
+    public String toString() {
+        return "Preference{" +
+                "date=" + date +
+                ", lunch=" + lunch +
+                '}';
+    }
 }

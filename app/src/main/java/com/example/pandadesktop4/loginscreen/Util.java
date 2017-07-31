@@ -30,10 +30,7 @@ public class Util {
         List<Date> dates = new ArrayList<>();
         Date date = null;
         try {
-
             date = new SimpleDateFormat("dd.MM.yyyy").parse("0." + currentMonth.toString() + "." + currentYear.toString());
-
-
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -4,12 +4,15 @@ package com.example.pandadesktop4.loginscreen.screen;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pandadesktop4.loginscreen.R;
 import com.example.pandadesktop4.loginscreen.Util;
@@ -45,7 +48,7 @@ public class PreferenceEntry extends AppCompatActivity {
         this.currentMonthPreferences = new ArrayList<>();
 
         List<Date> dates = Util.getDatesForMonth(month, year);
-        for(Date date : dates) {
+        for (Date date : dates) {
             currentMonthPreferences.add(new Preference(date, false));
         }
     }
@@ -69,17 +72,18 @@ public class PreferenceEntry extends AppCompatActivity {
     private void reload(Integer month, Integer year) {
         initializePreferences(month, year); // TODO get month and year from intent
 
+        Log.i("Preferences", currentMonthPreferences.size() +"");
+
         currentMonthLabel.setText(new SimpleDateFormat("MMMMMMMM").format(Util.getDate(month, year)));
         PreferenceAPI api = RestClient.getAuthenticationRestAdapter().create(PreferenceAPI.class);
-        call();
-        api.getAllPreferences(new Callback<PreferenceListResponse>() {
+//        call();
+        api.getAllPreferences(month + 1, year + 1900, new Callback<PreferenceListResponse>() {
             @Override
             public void success(PreferenceListResponse preferenceListResponse, Response response) {
 
                 for (PreferenceResponse preferenceResponse : preferenceListResponse.getPreferences()) {
                    for (Preference preference : currentMonthPreferences) {
-
-                        if (preferenceResponse.getDate().equals(preference.date)) {
+                        if (preferenceResponse.getDate().equals(new SimpleDateFormat("dd/MM/yyyy").format(preference.date))) {
                             preference.lunch = preferenceResponse.getLunch();
                        }
                     }
@@ -89,7 +93,7 @@ public class PreferenceEntry extends AppCompatActivity {
 
             @Override
             public void failure(RetrofitError error) {
-
+                Toast.makeText(getApplicationContext(), "Error.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -117,48 +121,12 @@ public class PreferenceEntry extends AppCompatActivity {
     }
 
 
-
-
-
     public void call() {
         this.adapter = new CustomAdapter(currentMonthPreferences, getApplicationContext());
-        currentMonthPreferencesView.setAdapter((ListAdapter) adapter);
-//        currentMonthPreferencesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView parent, View view, int position, long id) {
-//                Preference preference = currentMonthPreferences.get(position);
-//                preference.lunch = !preference.lunch;
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
+        currentMonthPreferencesView.setAdapter(adapter);
     }
 
-
 }
-
-
-//goToNextMonth.setOnClickListener(new View.OnClickListener() {
-//@Override
-//public void onClick(View view) {
-//        if (current_month > 12) {
-//        reload(0, current_year + 1);
-//        } else {
-//        reload(current_month + 1, current_year);
-//        }
-//        }
-//        });
-//
-//        gotToPreviousMonth.setOnClickListener(new View.OnClickListener() {
-//@Override
-//public void onClick(View view) {
-//        if (current_month < 0) {
-//        reload(11, current_year - 1);
-//        } else {
-//        reload(current_month - 1, current_year);
-//        }
-//        }
-//        });
-
 
 
 
